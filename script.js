@@ -10,6 +10,15 @@ const AREA_IMAGES = {
   鹿草: "assets/area-鹿草.png",
   六腳: "assets/area-六腳.png",
 };
+const AREA_ENGLISH_NAMES = {
+  朴子: "Puzi City",
+  水上: "Shuishang Township",
+  新港: "Xingang Township",
+  太保: "Taibao City",
+  中埔: "Zhongpu Township",
+  鹿草: "Lucao Township",
+  六腳: "Liujiao Township",
+};
 
 const state = {
   courses: [],
@@ -226,6 +235,7 @@ function renderArea(area) {
       return (a["開始時間"] || "").localeCompare(b["開始時間"] || "");
     });
 
+  setText(view, ".eyebrow", AREA_ENGLISH_NAMES[area] || "Area Courses");
   setText(view, "[data-area-title]", `${area}課程`);
   setText(view, "[data-area-summary]", `${areaCourses.length} 門課程，依星期與上午、下午、晚上分類。`);
 

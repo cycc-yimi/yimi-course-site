@@ -583,11 +583,16 @@ body.modal-open {
 }
 
 .page-title {
-  padding: 22px 0 6px;
+  padding: 6px 0 6px;
 }
 
 .page-title h1 {
-  margin-top: 18px;
+  margin-top: 10px;
+}
+
+.page-title .back-link {
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 .detail-title .eyebrow {

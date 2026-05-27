@@ -106,6 +106,20 @@ function getCourseWeeks(course) {
   return sessions.filter(hasRealWeekContent).length || sessions.length || "";
 }
 
+function formatMonthDay(value) {
+  const match = String(value || "").match(/(\d{1,2})月(\d{1,2})日/);
+  if (!match) return "";
+  return `${match[1].padStart(2, "0")}/${match[2].padStart(2, "0")}`;
+}
+
+function getCourseDateRange(course) {
+  const sessions = (state.sessionsByCourse.get(course["課程編號"]) || []).filter(hasRealWeekContent);
+  if (!sessions.length) return "";
+  const start = formatMonthDay(sessions[0]["日期"]);
+  const end = formatMonthDay(sessions[sessions.length - 1]["日期"]);
+  return start && end ? `${start}-${end}` : start || end;
+}
+
 function courseUrl(course) {
   return `#/course/${encodeURIComponent(course["課程編號"])}`;
 }
@@ -196,6 +210,7 @@ function courseCard(course) {
       <span>${course["開始時間"] || ""}${course["結束時間"] ? `-${course["結束時間"]}` : ""}</span>
       <span>${course["課程類別"] || "課程"}</span>
       <span>${getCourseWeeks(course)}週</span>
+      <span>${getCourseDateRange(course)}</span>
     </div>
   `;
   return card;
@@ -320,6 +335,7 @@ function renderCourse(code) {
     ["授課講師", course["授課講師"]],
     ["上課地點", course["上課地點"]],
     ["上課時間", formatClassTime(course)],
+    ["課程日期", getCourseDateRange(course)],
     ["課程類別", course["課程類別"]],
     ["選課人數", course["選課人數"]],
     ["學分數", course["學分數"]],

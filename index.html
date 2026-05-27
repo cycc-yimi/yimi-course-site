@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>嘉義縣邑米社區大學課程網</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#/">
+        <img class="brand-logo" src="assets/yimi-logo.png" alt="嘉義縣邑米社區大學" />
+      </a>
+      <nav class="top-nav" aria-label="主要導覽">
+        <a href="#notice">報名注意事項</a>
+        <a href="#/area/朴子">朴子</a>
+        <a href="#/area/水上">水上</a>
+        <a href="#/area/新港">新港</a>
+        <a href="#/area/太保">太保</a>
+        <a href="#/area/中埔">中埔</a>
+        <a href="#/area/鹿草">鹿草</a>
+        <a href="#/area/六腳">六腳</a>
+        <button class="nav-button" type="button" data-open-contact>聯絡我們</button>
+        <a class="signup-link" href="https://forms.gle/RVEyKGL61ShTXrss8" target="_blank" rel="noopener">線上報名</a>
+      </nav>
+    </header>
+
+    <main id="app">
+      <section class="loading">
+        <p>課程資料載入中...</p>
+      </section>
+    </main>
+
+    <template id="home-template">
+      <section class="intro">
+        <div class="hero-copy">
+          <p class="eyebrow">YiMi Community College</p>
+          <h1>115 秋季班招生中</h1>
+          <p>依區域、星期與時段快速找到適合的課程，課程目標、材料費與每週大綱都能一次看清楚。</p>
+        </div>
+        <div class="hero-stats" aria-label="本期課程資訊">
+          <span>本期課程</span>
+          <strong data-total-courses>--</strong>
+          <small>朴子、水上、新港、太保、中埔、鹿草、六腳</small>
+        </div>
+        <div class="hero-actions">
+          <a href="#regions">查看區域課程</a>
+          <a class="primary-action" href="https://forms.gle/RVEyKGL61ShTXrss8" target="_blank" rel="noopener">線上報名</a>
+        </div>
+      </section>
+
+      <section id="notice" class="notice-section">
+        <div class="section-heading">
+          <p class="eyebrow">Before Registration</p>
+          <h2>課程報名注意事項</h2>
+        </div>
+        <div class="notice-grid">
+          <details class="notice-card">
+            <summary><span>01</span><strong>報名資訊</strong></summary>
+            <div class="notice-content">
+              <h3>報名對象</h3>
+              <ul>
+                <li>不限年齡、學歷、居住地、國籍（需有身分證號或居留證號）均可報名。</li>
+                <li>小朋友報名須由家長自行留意安全。</li>
+              </ul>
+              <h3>報名時間</h3>
+              <p>即日起至額滿為止。</p>
+              <h3>報名方式</h3>
+              <ul>
+                <li>線上表單報名</li>
+                <li>現場報名</li>
+                <li>來電報名</li>
+                <li>舊班團報</li>
+              </ul>
+              <h3>報名需繳交資料</h3>
+              <ul>
+                <li>身份證正反面影本一份。</li>
+                <li>大頭照一張。</li>
+                <li>新生報名需填寫報名表（包含姓名、出生年月日、身份證號、生理性別、居住之鄉鎮縣市、職業、學歷）。</li>
+                <li>學費優待者請自備證明文件。</li>
+                <li>個人資料為教育部填報統計所需資料，若不同意提供以上資訊則不受理報名。</li>
+                <li>所選課程限本人上課，若非登記繳費之學員於上課場地發生意外事故（體傷、財物損失），社大無法保障其權利，請自行承擔。</li>
+                <li>不得由他人頂替或冒名上課，經發現立即取消上課資格，其所繳之報名費、學分費、雜費概不退還。</li>
+              </ul>
+            </div>
+          </details>
+          <details class="notice-card">
+            <summary><span>02</span><strong>收費方式</strong></summary>
+            <div class="notice-content">
+              <h3>收費標準</h3>
+              <ul>
+                <li>報名費：新生 200 元、舊生 100 元。</li>
+                <li>學分費：每 1 學分（18 小時）1,000 元。</li>
+                <li>雜費：設備維護費、耗材、場地費等，視課程及場地而定，不含在學分費裡。</li>
+                <li>報名費每學期僅收一次。</li>
+              </ul>
+              <h3>學分費優惠</h3>
+              <ul>
+                <li>以下身份優惠需憑證辦理。</li>
+                <li>除伴侶共學外，學分費優惠皆不可合併使用。</li>
+                <li>報名與繳費完成才享有優惠及報名成功。</li>
+              </ul>
+              <p><strong>四送一優惠（第五門免費）：</strong>報名繳費四門當期課程（共 8 學分）可再享一門課程（2 學分）免費，但不得退課、退費或延期保留。</p>
+            </div>
+          </details>
+          <details class="notice-card">
+            <summary><span>03</span><strong>退費標準</strong></summary>
+            <div class="notice-content">
+              <h3>退課退費標準</h3>
+              <p>已成班：報名費不予退費及轉讓，僅依退費標準表退還學分費及雜費。</p>
+              <div class="notice-table-wrap">
+                <table class="notice-table">
+                  <thead>
+                    <tr>
+                      <th>上課週數</th>
+                      <th>第一週提出申請<br />至第二週前</th>
+                      <th>第二週提出申請<br />至第三週前</th>
+                      <th>第三週提出申請<br />至第四週前</th>
+                      <th>第四週提出申請<br />至第五週前</th>
+                      <th>第五週提出申請<br />至第六週前</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>18 週</th>
+                      <td>全退</td>
+                      <td>全退</td>
+                      <td>退 7 成</td>
+                      <td>退 6 成</td>
+                      <td>不退費</td>
+                    </tr>
+                    <tr>
+                      <th>非 18 週</th>
+                      <td>全退</td>
+                      <td>退 7 成</td>
+                      <td>退 6 成</td>
+                      <td>不退費</td>
+                      <td>不退費</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h3>退費方式</h3>
+              <ul>
+                <li>請填寫退費表單：線上退費表單。</li>
+                <li>退費日期為每月 10 號、25 號。</li>
+                <li>若退款帳戶非郵局或京城銀行，會酌收 15 元手續費。</li>
+              </ul>
+              <h3>退費注意事項</h3>
+              <ul>
+                <li>已成班：報名費不予退費及轉讓，僅依退費標準表退還學分費及雜費。</li>
+                <li>未成班：全額退費（報名費、學分費、雜費）。</li>
+                <li>申請退費需由本人提出，若委託他人但他人延後告知本社大，將以被委託人告知社大之日計算退費級距，且不得異議。</li>
+                <li>為簡化行政程序和避免費用所衍伸之爭議，社大皆不延期或保留學員所繳費用。</li>
+              </ul>
+            </div>
+          </details>
+          <details class="notice-card">
+            <summary><span>04</span><strong>繳費方式</strong></summary>
+            <div class="notice-content">
+              <h3>現場繳費</h3>
+              <h4>中埔校本部（和興國小 B1 辦公室）</h4>
+              <ul>
+                <li>週一至週五 08:30-17:00</li>
+                <li>地址：嘉義縣中埔鄉和興路 91 號</li>
+                <li>電話：05-2390519</li>
+              </ul>
+              <h4>朴子分校（嘉義縣立圖書館 B1 辦公室）</h4>
+              <ul>
+                <li>週二至週五 09:00-16:30</li>
+                <li>地址：嘉義縣朴子市山通路 7 號</li>
+                <li>電話：05-3790898</li>
+              </ul>
+              <h4>大同國小志工休息室</h4>
+              <ul>
+                <li>週一、週五 14:00-16:30</li>
+                <li>地址：嘉義縣朴子市大同路 239 號</li>
+              </ul>
+              <h4>水上-正大書局</h4>
+              <ul>
+                <li>依店面營業時間</li>
+                <li>地址：嘉義縣水上鄉中興路 209 號</li>
+              </ul>
+              <h3>匯款方式</h3>
+              <ul>
+                <li>匯款銀行：京城銀行中埔分行</li>
+                <li>銀行代碼：054</li>
+                <li>戶名：社團法人台灣國際學術交流學會</li>
+                <li>帳號：0331-25013169</li>
+              </ul>
+              <p>匯款完成後請來電或私訊邑米社大（LINE ID：0905935899），提供帳號末 5 碼、匯款金額及匯款時間。</p>
+            </div>
+          </details>
+          <details class="notice-card">
+            <summary><span>05</span><strong>課程費用規定</strong></summary>
+            <div class="notice-content">
+              <h3>學分費與報名規則</h3>
+              <ul>
+                <li>1 學分：1,000 元；2 學分：2,000 元；3 學分：3,000 元。</li>
+                <li>原訂為 2 學分課程者，不可僅報名 1 學分，亦不得享有任何優惠辦法。</li>
+              </ul>
+              <h3>試聽規則</h3>
+              <ul>
+                <li>每人每門課限一次，需提前電話報名。</li>
+                <li>超過試聽週後，需先聯繫本校，並由本校轉知講師同意方可試聽，酌收試聽費 250 元。</li>
+                <li>材料費及冷氣費另計。</li>
+                <li>若試聽後報名，旁聽費可折抵學分費。</li>
+              </ul>
+              <h3>中途插班規定</h3>
+              <ul>
+                <li>18 週課程：自第 3 週起依比例收取學分費。</li>
+                <li>非 18 週課程：自第 2 週起依比例收取學分費。</li>
+                <li>報名費與場地費仍全額收取。</li>
+              </ul>
+              <h3>場地費與冷氣費</h3>
+              <ul>
+                <li>場地費依各場地規定收取，部分班級開課與否待確認，場地費將於開課前另行通知。</li>
+                <li>冷氣費用依場地管理規定辦理，金額以開課公告為準。</li>
+              </ul>
+              <h3>雜費與場地使用</h3>
+              <ul>
+                <li>專業教室如需水電或設備維護，雜費將依實際需求另行收取。</li>
+                <li>雜費不含場地清潔費用，請各班自行安排清掃，維護環境整潔，並將垃圾帶走。</li>
+              </ul>
+              <h3>教材費與戶外教學</h3>
+              <ul>
+                <li>材料費及教材費由授課教師訂定，學員自行負擔，社大不代收。</li>
+                <li>戶外教學相關費用（如交通、餐飲、保險等）由班級自理與收費。</li>
+                <li>學員參加戶外教學時應辦理保險。</li>
+              </ul>
+              <h3>證明與行政費用</h3>
+              <ul>
+                <li>收據遺失補發，酌收工本費 100 元。</li>
+                <li>研習證書製證費為 100 元。</li>
+              </ul>
+              <p>所有費用依實際狀況及開課公告為準，敬請學員留意各期正式通知。</p>
+            </div>
+          </details>
+          <details class="notice-card">
+            <summary><span>06</span><strong>其他注意事項</strong></summary>
+            <div class="notice-content">
+              <ul>
+                <li>為維護學習權益，若有不當行為以致影響班級運作或講師教學情事，本校得取消其上課資格並沒收該課之全部費用。</li>
+                <li>如遇天災是否停班停課，依嘉義縣政府發布之公告訊息為主，課程如因天災停課，恕不另行補課。</li>
+                <li>國定假日比照嘉義縣政府，若國定假期不停課，則由該課講師與學員另行決定，但需提前一週告知社大，以確認場地是否可正常使用。</li>
+                <li>運動類課程請自行評估身體狀況，活動中請注意上課安全。</li>
+                <li>社大師生須保留最後一堂課做為課程成果展演（展覽或社區服務）。</li>
+                <li>開課前將於本校官方網站及 FB 粉絲專頁公告開課資訊，課程如有調整，悉以公告內容為準。</li>
+                <li>每小時課程安排為 50 分鐘上課、10 分鐘休息；各班級可依實際上課需求，自行調配休息時間。</li>
+                <li>校內停車請依各校區規定辦理；若未開放停車，請自行安排停車事宜。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section id="regions" class="region-section">
+        <div class="section-heading">
+          <p class="eyebrow">Choose Area</p>
+          <h2>選擇區域課程</h2>
+        </div>
+        <div class="region-grid" data-region-grid></div>
+      </section>
+    </template>
+
+    <template id="area-template">
+      <section class="page-title">
+        <a class="back-link" href="#/">返回首頁</a>
+        <p class="eyebrow">Area Courses</p>
+        <h1 data-area-title></h1>
+        <p data-area-summary></p>
+      </section>
+      <section class="tools">
+        <label>
+          搜尋課程
+          <input type="search" data-search placeholder="輸入課名、講師或地點" />
+        </label>
+        <label>
+          時段
+          <select data-period-filter>
+            <option value="全部">全部時段</option>
+            <option value="上午">上午</option>
+            <option value="下午">下午</option>
+            <option value="晚上">晚上</option>
+          </select>
+        </label>
+      </section>
+      <section class="day-tabs" data-day-tabs aria-label="依星期篩選課程"></section>
+      <section class="schedule" data-schedule></section>
+    </template>
+
+    <template id="course-template">
+      <section class="page-title detail-title">
+        <a class="back-link" data-back-to-area href="#/">返回區域課表</a>
+        <p class="eyebrow" data-course-code></p>
+        <h1 data-course-name></h1>
+        <p data-course-meta></p>
+      </section>
+      <section class="detail-layout">
+        <aside class="course-facts" data-course-facts></aside>
+        <article class="course-detail" data-course-detail></article>
+      </section>
+      <section class="weekly-detail">
+        <div class="section-heading">
+          <p class="eyebrow">Weekly Plan</p>
+          <h2>每週課程大綱</h2>
+        </div>
+        <div class="week-list" data-week-list></div>
+      </section>
+    </template>
+
+    <div class="notice-modal" data-notice-modal hidden>
+      <div class="notice-modal-backdrop" data-close-notice></div>
+      <section class="notice-modal-panel" role="dialog" aria-modal="true" aria-labelledby="notice-modal-title">
+        <button class="modal-close" type="button" data-close-notice aria-label="關閉">×</button>
+        <p class="eyebrow">Before Registration</p>
+        <h2 id="notice-modal-title" data-notice-title></h2>
+        <div class="notice-modal-body" data-notice-body></div>
+      </section>
+    </div>
+
+    <div class="notice-modal" data-contact-modal hidden>
+      <div class="notice-modal-backdrop" data-close-contact></div>
+      <section class="notice-modal-panel contact-panel" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+        <button class="modal-close" type="button" data-close-contact aria-label="關閉">×</button>
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-modal-title">聯絡我們</h2>
+        <div class="contact-grid">
+          <article>
+            <h3>中埔校本部</h3>
+            <p><strong>連絡電話：</strong>05-2390519</p>
+            <p><strong>地址：</strong>嘉義縣中埔鄉和興路91號（和興國小）</p>
+            <p><strong>服務時間：</strong>週一至週五 09:00-17:00（國定假日休息）</p>
+          </article>
+          <article>
+            <h3>朴子分校</h3>
+            <p><strong>連絡電話：</strong>05-3790898</p>
+            <p><strong>地址：</strong>嘉義縣朴子市山通路7號B1（嘉義縣立圖書館）</p>
+            <p><strong>服務時間：</strong>週二至週五 09:00-17:00（週一及國定假日休息）</p>
+          </article>
+        </div>
+        <a class="line-contact" href="https://line.me/ti/p/IDoqhx8Hf-" target="_blank" rel="noopener">
+          LINE ID：0905935899
+        </a>
+      </section>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

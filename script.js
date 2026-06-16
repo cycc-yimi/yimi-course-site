@@ -32,6 +32,30 @@ const noticeModalTitle = document.querySelector("[data-notice-title]");
 const noticeModalBody = document.querySelector("[data-notice-body]");
 const contactModal = document.querySelector("[data-contact-modal]");
 
+function getCourseStatus(course) {
+  const status = window.YIMI_COURSE_STATUS || {};
+  return status[course["課程編號"]] || course["報名狀態"] || "";
+}
+
+function courseBadges(course) {
+  const badges = [];
+  if ((course["新舊課"] || "").includes("新課")) {
+    badges.push({ text: "新課", type: "new" });
+  }
+  const status = getCourseStatus(course);
+  if (status) {
+    const type = status === "額滿" ? "full" : status === "候補" ? "waitlist" : "closed";
+    badges.push({ text: status, type });
+  }
+  return badges;
+}
+
+function badgeMarkup(course) {
+  return courseBadges(course)
+    .map((badge) => `<span class="course-badge ${badge.type}">${badge.text}</span>`)
+    .join("");
+}
+
 function parseCsv(text) {
   const rows = [];
   let row = [];
@@ -168,6 +192,46 @@ function renderHome() {
 
   app.replaceChildren(view);
   bindNoticeCards();
+  bindHomeSearch();
+}
+
+function bindHomeSearch() {
+  const input = document.querySelector("[data-home-search]");
+  const results = document.querySelector("[data-home-search-results]");
+  if (!input || !results) return;
+
+  function draw() {
+    const keyword = input.value.trim().toLowerCase();
+    results.replaceChildren();
+    if (!keyword) {
+      results.innerHTML = `<div class="empty">輸入課名、講師、地點或課程編號，就能快速找到課程。</div>`;
+      return;
+    }
+
+    const matches = state.courses
+      .filter((course) => {
+        const text = [
+          course["課程編號"],
+          course["課程名稱"],
+          course["授課講師"],
+          course["上課地點"],
+          course["課程類別"],
+          course.area,
+        ].join(" ").toLowerCase();
+        return text.includes(keyword);
+      })
+      .slice(0, 18);
+
+    if (!matches.length) {
+      results.innerHTML = `<div class="empty">沒有找到符合條件的課程。</div>`;
+      return;
+    }
+
+    matches.forEach((course) => results.append(courseCard(course)));
+  }
+
+  input.addEventListener("input", draw);
+  draw();
 }
 
 function openNoticeModal(card) {
@@ -213,6 +277,7 @@ function courseCard(course) {
   card.className = "course-card";
   card.href = courseUrl(course);
   card.innerHTML = `
+    <div class="course-badges">${badgeMarkup(course)}</div>
     <strong>${course["課程名稱"]}</strong>
     <p>${course["授課講師"] || "講師待定"} · ${course["上課地點"] || "地點待定"}</p>
     <div class="course-meta">
@@ -333,6 +398,7 @@ function renderCourse(code) {
 
   const view = cloneTemplate("#course-template");
   view.querySelector("[data-back-to-area]").href = areaUrl(course.area);
+  view.querySelector("[data-floating-back]").href = areaUrl(course.area);
   setText(view, "[data-course-code]", course["課程編號"]);
   setText(view, "[data-course-name]", course["課程名稱"]);
   setText(
@@ -340,6 +406,12 @@ function renderCourse(code) {
     "[data-course-meta]",
     `${course.area} · ${course["星期"] || "時間待定"} ${course["開始時間"] || ""}-${course["結束時間"] || ""}`,
   );
+
+  const title = view.querySelector(".detail-title");
+  const badges = document.createElement("div");
+  badges.className = "course-badges detail-badges";
+  badges.innerHTML = badgeMarkup(course);
+  title.append(badges);
 
   const facts = [
     ["授課講師", course["授課講師"]],
@@ -383,10 +455,20 @@ function renderCourse(code) {
   });
 
   app.replaceChildren(view);
+  document.querySelector("[data-scroll-top]").addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 }
 
 function route() {
   const hash = decodeURIComponent(location.hash || "#/");
+  if (hash === "#notice" || hash === "#regions") {
+    renderHome();
+    requestAnimationFrame(() => {
+      document.querySelector(hash)?.scrollIntoView({ behavior: "auto", block: "start" });
+    });
+    return;
+  }
   const [, page, value] = hash.split("/");
   if (page === "area" && value) {
     renderArea(value);
@@ -395,6 +477,7 @@ function route() {
   } else {
     renderHome();
   }
+  window.scrollTo({ top: 0, behavior: "auto" });
 }
 
 async function init() {

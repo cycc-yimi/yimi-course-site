@@ -258,12 +258,27 @@ h3 {
 }
 
 .notice-section,
+.home-search-section,
 .region-section,
 .schedule,
 .weekly-detail,
 .detail-layout,
 .tools {
   margin-top: 44px;
+}
+
+.home-search-box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.home-search-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
 }
 
 .day-tabs {
@@ -477,6 +492,13 @@ body.modal-open {
   line-height: 1.8;
 }
 
+.notice-modal-body a {
+  color: var(--accent-dark);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .notice-modal-body ul {
   margin: 0;
   padding-left: 1.3em;
@@ -679,6 +701,43 @@ select {
   padding: 16px;
 }
 
+.course-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 0;
+  margin-bottom: 10px;
+}
+
+.course-badge {
+  border-radius: 999px;
+  padding: 4px 9px;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.course-badge.new {
+  background: #287f8f;
+}
+
+.course-badge.full {
+  background: #b94444;
+}
+
+.course-badge.waitlist {
+  background: #b98738;
+}
+
+.course-badge.closed {
+  background: #6d7773;
+}
+
+.detail-badges {
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
 .course-card strong {
   display: block;
   margin-bottom: 8px;
@@ -781,6 +840,36 @@ select {
   white-space: pre-line;
 }
 
+.floating-actions {
+  position: fixed;
+  right: 18px;
+  bottom: 24px;
+  z-index: 50;
+  display: grid;
+  gap: 8px;
+}
+
+.floating-actions a,
+.floating-actions button {
+  min-width: 132px;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 11px 14px;
+  color: var(--accent-dark);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 24px rgba(38, 49, 45, 0.14);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.floating-actions a {
+  color: var(--white);
+  background: var(--accent-dark);
+}
+
 .loading {
   min-height: 280px;
   display: grid;
@@ -810,6 +899,7 @@ select {
   .notice-grid,
   .region-grid,
   .period-grid,
+  .home-search-results,
   .week-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -854,9 +944,22 @@ select {
   .notice-grid,
   .region-grid,
   .period-grid,
+  .home-search-results,
   .week-list,
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .floating-actions {
+    right: 10px;
+    bottom: 12px;
+  }
+
+  .floating-actions a,
+  .floating-actions button {
+    min-width: 112px;
+    padding: 10px 12px;
+    font-size: 13px;
   }
 
   .region-card {

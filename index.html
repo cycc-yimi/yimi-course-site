@@ -49,6 +49,17 @@
         </div>
       </section>
 
+      <section class="home-search-section">
+        <div class="section-heading">
+          <p class="eyebrow">Course Search</p>
+          <h2>搜尋課程</h2>
+        </div>
+        <div class="home-search-box">
+          <input type="search" data-home-search placeholder="輸入課程名稱、講師、地點或課程編號" />
+        </div>
+        <div class="home-search-results" data-home-search-results></div>
+      </section>
+
       <section id="notice" class="notice-section">
         <div class="section-heading">
           <p class="eyebrow">Before Registration</p>
@@ -142,7 +153,7 @@
               </div>
               <h3>退費方式</h3>
               <ul>
-                <li>請填寫退費表單：線上退費表單。</li>
+                <li>請填寫退費表單：<a href="https://docs.google.com/forms/d/e/1FAIpQLSd0D1s6ik9cEcCe7Jtbj0KyxBz6y3Qs9shBqqbWdIv3nBvt5A/viewform" target="_blank" rel="noopener">線上退費表單</a>。</li>
                 <li>退費日期為每月 10 號、25 號。</li>
                 <li>若退款帳戶非郵局或京城銀行，會酌收 15 元手續費。</li>
               </ul>
@@ -307,6 +318,10 @@
         </div>
         <div class="week-list" data-week-list></div>
       </section>
+      <div class="floating-actions">
+        <a data-floating-back href="#/">回到課程列表</a>
+        <button type="button" data-scroll-top>回到最上方</button>
+      </div>
     </template>
 
     <div class="notice-modal" data-notice-modal hidden>
@@ -346,6 +361,7 @@
     </div>
 
     <script src="data.js"></script>
+    <script src="course-status.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

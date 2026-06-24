@@ -12,16 +12,20 @@
         <img class="brand-logo" src="assets/yimi-logo.png" alt="嘉義縣邑米社區大學" />
       </a>
       <nav class="top-nav" aria-label="主要導覽">
-        <a href="#notice">報名注意事項</a>
-        <a href="#/area/朴子">朴子</a>
-        <a href="#/area/水上">水上</a>
-        <a href="#/area/新港">新港</a>
-        <a href="#/area/太保">太保</a>
-        <a href="#/area/中埔">中埔</a>
-        <a href="#/area/鹿草">鹿草</a>
-        <a href="#/area/六腳">六腳</a>
-        <button class="nav-button" type="button" data-open-contact>聯絡我們</button>
-        <a class="signup-link" href="https://forms.gle/RVEyKGL61ShTXrss8" target="_blank" rel="noopener">線上報名</a>
+        <div class="nav-row nav-regions">
+          <a href="#/area/朴子">朴子</a>
+          <a href="#/area/水上">水上</a>
+          <a href="#/area/新港">新港</a>
+          <a href="#/area/太保">太保</a>
+          <a href="#/area/中埔">中埔</a>
+          <a href="#/area/鹿草">鹿草</a>
+          <a href="#/area/六腳">六腳</a>
+        </div>
+        <div class="nav-row nav-actions">
+          <a href="#notice">報名注意事項</a>
+          <button class="nav-button" type="button" data-open-contact>聯絡我們</button>
+          <a class="signup-link" href="https://forms.gle/RVEyKGL61ShTXrss8" target="_blank" rel="noopener">線上報名</a>
+        </div>
       </nav>
     </header>
 
@@ -50,9 +54,12 @@
       </section>
 
       <section class="home-search-section">
-        <div class="section-heading">
+        <div class="section-heading home-search-heading">
           <p class="eyebrow">Course Search</p>
-          <h2>搜尋課程</h2>
+          <div class="heading-line">
+            <h2>搜尋課程</h2>
+            <p>輸入課名、講師、地點或課程編號，就能快速找到課程。</p>
+          </div>
         </div>
         <div class="home-search-box">
           <input type="search" data-home-search placeholder="輸入課程名稱、講師、地點或課程編號" />
@@ -272,29 +279,37 @@
         </div>
         <div class="region-grid" data-region-grid></div>
       </section>
+
+      <footer class="home-credit">
+        <span>指導單位：教育部</span>
+        <span>主辦單位：嘉義縣政府</span>
+        <span>承辦單位：社團法人台灣國際學術交流學會</span>
+      </footer>
     </template>
 
     <template id="area-template">
-      <section class="page-title">
-        <a class="back-link" href="#/">返回首頁</a>
-        <p class="eyebrow">Area Courses</p>
-        <h1 data-area-title></h1>
-        <p data-area-summary></p>
-      </section>
-      <section class="tools">
-        <label>
-          搜尋課程
-          <input type="search" data-search placeholder="輸入課名、講師或地點" />
-        </label>
-        <label>
-          時段
-          <select data-period-filter>
-            <option value="全部">全部時段</option>
-            <option value="上午">上午</option>
-            <option value="下午">下午</option>
-            <option value="晚上">晚上</option>
-          </select>
-        </label>
+      <section class="area-overview">
+        <div class="page-title">
+          <a class="back-link" href="#/">返回首頁</a>
+          <p class="eyebrow">Area Courses</p>
+          <h1 data-area-title></h1>
+          <p data-area-summary></p>
+        </div>
+        <section class="tools">
+          <label>
+            搜尋課程
+            <input type="search" data-search placeholder="輸入課名、講師、地點或課程編號" />
+          </label>
+          <label>
+            時段
+            <select data-period-filter>
+              <option value="全部">全部時段</option>
+              <option value="上午">上午</option>
+              <option value="下午">下午</option>
+              <option value="晚上">晚上</option>
+            </select>
+          </label>
+        </section>
       </section>
       <section class="day-tabs" data-day-tabs aria-label="依星期篩選課程"></section>
       <section class="schedule" data-schedule></section>

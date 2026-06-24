@@ -1,6 +1,15 @@
 const AREAS = ["朴子", "水上", "新港", "太保", "中埔", "鹿草", "六腳"];
 const DAYS = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
 const PERIODS = ["上午", "下午", "晚上"];
+const EXCLUDED_COURSE_CODES = new Set([
+  "1152C55", "1152C56", "1152C57", "1152C58",
+  "1152C59", "1152C60", "1152C61", "1152C63",
+]);
+const NEW_COURSE_CODES = new Set([
+  "1152C67", "1152C52", "1152C68", "1152C69", "1152A09", "1152C46",
+  "1152C18", "1152C65", "1152C07", "1152C27", "1152C53", "1152C17",
+  "1152C64", "1152C41", "1152C22", "1152C62", "1152C66", "1152C49",
+]);
 const AREA_IMAGES = {
   朴子: "assets/area-朴子.png",
   水上: "assets/area-水上.png",
@@ -39,7 +48,7 @@ function getCourseStatus(course) {
 
 function courseBadges(course) {
   const badges = [];
-  if ((course["新舊課"] || "").includes("新課")) {
+  if (NEW_COURSE_CODES.has(course["課程編號"]) || (course["新舊課"] || "").includes("新課")) {
     badges.push({ text: "新課", type: "new" });
   }
   const status = getCourseStatus(course);
@@ -204,9 +213,10 @@ function bindHomeSearch() {
     const keyword = input.value.trim().toLowerCase();
     results.replaceChildren();
     if (!keyword) {
-      results.innerHTML = `<div class="empty">輸入課名、講師、地點或課程編號，就能快速找到課程。</div>`;
+      results.hidden = true;
       return;
     }
+    results.hidden = false;
 
     const matches = state.courses
       .filter((course) => {
@@ -334,7 +344,7 @@ function renderArea(area) {
 
     DAYS.filter((day) => selectedDay === "全部" || day === selectedDay).forEach((day) => {
       const dayCourses = areaCourses.filter((course) => {
-        const text = `${course["課程名稱"]} ${course["授課講師"]} ${course["上課地點"]}`.toLowerCase();
+        const text = `${course["課程編號"]} ${course["課程名稱"]} ${course["授課講師"]} ${course["上課地點"]}`.toLowerCase();
         return course["星期"] === day && (!keyword || text.includes(keyword));
       });
 
@@ -489,12 +499,14 @@ async function init() {
     ? embedded.sessions
     : parseCsv(await fetch("outputs/weekly_sessions_import.csv").then((response) => response.text()));
 
-  state.courses = courses.map((course) => ({
-    ...course,
-    area: normalizeArea(course),
-    period: getPeriod(course),
-  }));
-  state.sessions = sessions;
+  state.courses = courses
+    .filter((course) => !EXCLUDED_COURSE_CODES.has(course["課程編號"]))
+    .map((course) => ({
+      ...course,
+      area: normalizeArea(course),
+      period: getPeriod(course),
+    }));
+  state.sessions = sessions.filter((session) => !EXCLUDED_COURSE_CODES.has(session["課程編號"]));
   state.sessionsByCourse = state.sessions.reduce((map, session) => {
     const code = session["課程編號"];
     if (!map.has(code)) map.set(code, []);

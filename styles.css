@@ -963,18 +963,9 @@ select {
   }
 
   .nav-regions {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 2px;
-  }
-
-  .nav-regions::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav-regions a {
-    flex: 0 0 88px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
   }
 
   .day-tabs {

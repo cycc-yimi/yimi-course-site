@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嘉義縣邑米社區大學115秋季班學費試算器">
+    <title>115秋季班｜學費試算器</title>
+    <link rel="stylesheet" href="./css/tuition.css">
+  </head>
+  <body>
+    <header class="hero">
+      <div class="shell">
+        <a class="back-to-courses" href="../index.html">← 返回課程網站</a>
+        <p class="eyebrow">嘉義縣邑米社區大學・115秋季班</p>
+        <h1>學費試算器</h1>
+        <p>用課程編號或地區選課，逐門看懂報名費、學分費、雜費與優惠。</p>
+      </div>
+    </header>
+
+    <main class="shell layout">
+      <form id="calculator-form" class="main-column" novalidate>
+        <section class="panel">
+          <div class="section-heading">
+            <span>01</span>
+            <div><h2>選擇課程</h2><p>可連續加入多門；四送一由系統自動挑選符合資格的贈送課。</p></div>
+          </div>
+
+          <div class="search-grid">
+            <div class="search-card">
+              <h3>輸入課程編號</h3>
+              <label for="course-code">課程編號</label>
+              <div class="inline">
+                <input id="course-code" type="search" placeholder="例如 1152C67" autocomplete="off">
+                <button id="add-code" class="button primary" type="button">加入課程</button>
+              </div>
+            </div>
+            <div class="search-card">
+              <h3>依地區與課程查詢</h3>
+              <div class="select-grid">
+                <label>地區<select id="area"><option value="">全部地區</option></select></label>
+                <label>課程名稱<select id="course-select"></select></label>
+              </div>
+              <button id="add-select" class="button secondary" type="button">加入選取課程</button>
+            </div>
+          </div>
+          <p id="status-message" class="status" role="status" aria-live="polite"></p>
+          <p id="empty-selection" class="empty">尚未加入課程。先從上方選一門吧。</p>
+          <ol id="selected-courses" class="selected-list"></ol>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <span>02</span>
+            <div><h2>基本資料與優惠</h2><p>可勾選實際具備的身分，系統會自動安排到總折扣最高的課程。</p></div>
+          </div>
+
+          <div class="field-grid">
+            <fieldset>
+              <legend>學員身分</legend>
+              <label class="choice"><input type="radio" name="student-status" value="new"> 新生（報名費200元）</label>
+              <label class="choice"><input type="radio" name="student-status" value="returning" checked> 舊生（報名費100元）</label>
+              <div class="child-status-grid">
+                <label>兒童新生
+                  <select id="child-new-count">
+                    <option value="0">0位</option>
+                    <option value="1">1位</option>
+                    <option value="2">2位</option>
+                  </select>
+                </label>
+                <label>兒童舊生
+                  <select id="child-returning-count">
+                    <option value="0">0位</option>
+                    <option value="1">1位</option>
+                    <option value="2">2位</option>
+                  </select>
+                </label>
+              </div>
+              <small>兒童新生與舊生合計至多2位；每位兒童報名費一期僅收一次。</small>
+            </fieldset>
+            <fieldset>
+              <legend>繳費時間</legend>
+              <label class="choice"><input type="radio" name="payment-period" value="onTime" checked> 115/07/16含以前完成繳費</label>
+              <label class="choice"><input type="radio" name="payment-period" value="late"> 115/07/17以後完成繳費</label>
+            </fieldset>
+          </div>
+
+          <fieldset class="discount-options">
+            <legend>優惠身分（可複選）</legend>
+            <p class="field-help">請只勾選具備證明文件的身分；同一門課只套用一種主優惠。</p>
+            <div id="main-discounts"></div>
+          </fieldset>
+
+          <div class="special-options">
+            <div class="family-note"><strong>親子共學</strong>：請直接在上方課程的「同行兒童」選擇1–2位，系統即自動套用，不需再次勾選。兒童學分費半價、雜費依參加人數計；試聽週後、兒童單獨報名及已優惠課程不適用。</div>
+            <label class="option-card">
+              <input id="four-plus-one" type="checkbox">
+              <span><strong>四送一</strong><small>五門中任四門合計至少8學分，另一門2學分以下免報名費及學分費；雜費照收，不得退課、退費或延期。</small></span>
+            </label>
+            <div class="option-card">
+              <label><input id="partner-learning" type="checkbox"> <strong>伴侶共學</strong></label>
+              <small>伴侶同修同一門，僅其中一人於任一優惠後再折100元；試聽週後及已優惠課程不適用。</small>
+              <label class="nested">套用課程<select id="partner-course" disabled></select></label>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <aside id="result" class="panel result-panel" aria-live="polite">
+        <div class="result-title">
+          <div><p class="eyebrow">試算結果</p><h2>費用明細</h2></div>
+          <div class="actions">
+            <button id="copy-result" class="button ghost" type="button">複製結果</button>
+            <button id="print-result" class="button ghost" type="button">列印</button>
+          </div>
+        </div>
+        <p id="no-result" class="empty">加入課程後，費用會立即顯示在這裡。</p>
+        <div id="result-content" hidden>
+          <p id="promotion-summary" class="promotion-summary" hidden></p>
+          <div id="result-items"></div>
+          <ul id="warnings" class="warnings" hidden></ul>
+          <div class="grand-total"><span>總計</span><strong id="grand-total">0元</strong></div>
+        </div>
+        <div class="notices">
+          <h3>試算前請留意</h3>
+          <ul id="notices"></ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer>本工具為獨立試算模組，不會送出或保存個人資料。</footer>
+    <script src="./data/tuition-data.js"></script>
+    <script src="./js/calculator.js"></script>
+    <script src="./js/tuition.js"></script>
+  </body>
+</html>

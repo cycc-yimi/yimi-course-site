@@ -1,0 +1,10 @@
+{
+  "semester": "115秋季班",
+  "source": "115秋季課程一覽表.xlsx",
+  "description": "各課程雜費已收錄於 courses.json；本檔提供全域規則與待確認項目。",
+  "rules": {
+    "discountable": false,
+    "fallbackFee": 0
+  },
+  "pendingConfirmation": []
+}

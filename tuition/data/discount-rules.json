@@ -1,0 +1,67 @@
+{
+  "semester": "115秋季班",
+  "creditFeePerCredit": 1000,
+  "registrationFees": {
+    "new": 200,
+    "returning": 100
+  },
+  "deadline": "115/07/16",
+  "mainDiscounts": [
+    {
+      "id": "none",
+      "label": "無優惠",
+      "rate": 1,
+      "description": "學分費以原價計算。"
+    },
+    {
+      "id": "half",
+      "label": "學分費5折",
+      "rate": 0.5,
+      "maxCourses": 1,
+      "deadlineRequired": true,
+      "excludeDiscountedCourse": true,
+      "description": "身心障礙者、低收入戶或本校當期講師；限一門、須於115/07/16含以前繳費，不含已優惠課程。"
+    },
+    {
+      "id": "senior",
+      "label": "學分費7折",
+      "rate": 0.7,
+      "maxCourses": 1,
+      "deadlineRequired": true,
+      "excludeDiscountedCourse": true,
+      "description": "65歲以上長者；限一門、須於115/07/16含以前繳費，不含已優惠課程。"
+    },
+    {
+      "id": "resident",
+      "label": "學分費8折",
+      "rate": 0.8,
+      "excludeDiscountedCourse": true,
+      "description": "新住民或原住民；無期限限制，不含已優惠課程。"
+    },
+    {
+      "id": "earlyBird",
+      "label": "學分費9折",
+      "rate": 0.9,
+      "deadlineRequired": true,
+      "excludeDiscountedCourse": true,
+      "description": "全員早鳥；須於115/07/16含以前完成繳費，逾期或僅報名未繳費即放棄。"
+    }
+  ],
+  "familyLearning": {
+    "childRate": 0.5,
+    "maxChildren": 2,
+    "excludeDiscountedCourse": true,
+    "description": "直系親屬或法定代理人與12歲以下兒童同修同一門；兒童至多2位，兒童學分費半價，大人依一般優惠。試聽週後及兒童單獨報名不適用。"
+  },
+  "fourPlusOne": {
+    "minimumPaidCourses": 4,
+    "minimumPaidCredits": 8,
+    "freeCourseMaxCredits": 2,
+    "description": "前四門以原價繳費且合計至少8學分，第五門2學分以下學分費免費；報名費與雜費照收，不得退課、退費或延期。"
+  },
+  "partnerLearning": {
+    "amount": 100,
+    "excludeDiscountedCourse": true,
+    "description": "伴侶同修同一門，僅其中一人可於任一優惠後再折100元；試聽週後及已優惠課程不適用。"
+  }
+}

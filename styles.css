@@ -92,7 +92,7 @@ a {
 }
 
 .nav-actions {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .top-nav a,
@@ -118,6 +118,12 @@ a {
   border-color: var(--accent-dark);
   color: var(--white);
   background: var(--accent-dark);
+}
+
+.top-nav .tuition-nav-link {
+  border-color: #b38327;
+  background: #fff6df;
+  color: #7a5212;
 }
 
 main {
@@ -209,6 +215,12 @@ main {
   border-color: var(--accent-dark);
   background: var(--accent-dark);
   color: var(--white);
+}
+
+.hero-actions .tuition-action {
+  border-color: #b38327;
+  background: #fff6df;
+  color: #7a5212;
 }
 
 .eyebrow {
@@ -1002,7 +1014,7 @@ select {
   }
 
   .nav-actions {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .nav-actions a,

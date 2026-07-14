@@ -769,11 +769,15 @@ select {
 }
 
 .course-badge {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
   border-radius: 999px;
-  padding: 4px 9px;
+  padding: 6px 12px;
   color: var(--white);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 900;
+  line-height: 1;
 }
 
 .course-badge.new {
@@ -782,8 +786,6 @@ select {
 
 .course-badge.full {
   background: #b94444;
-  padding: 8px 14px;
-  font-size: 18px;
 }
 
 .course-badge.waitlist {
@@ -815,12 +817,16 @@ select {
 
 .course-meta span,
 .fact {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
   border-radius: 999px;
-  padding: 5px 9px;
+  padding: 6px 12px;
   background: var(--soft);
   color: var(--accent-dark);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1;
 }
 
 .empty {
